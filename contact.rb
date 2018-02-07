@@ -1,41 +1,58 @@
 class Contact
 
-  # This method should initialize the contact's attributes
-  def initialize
+  @@contacts = []
+  @@id = 1
 
+  def initialize(first_name, last_name, email, note)
+    @first_name = first_name
+    @last_name  = last_name
+    @email      = email
+    @note       = note
+
+    @id         = @@id
+    @@id       += 1
   end
 
-  # This method should call the initializer, 
-  # store the newly created contact, and then return it
-  def self.create
+  # CLASS METHODS
 
+  def self.create(first_name, last_name, email, note)
+    new_contact = Contact.new(first_name, last_name, email, note)
+    @@contacts << new_contact
+    return new_contact
   end
 
-  # This method should return all of the existing contacts
   def self.all
-
+    @@contacts
   end
 
-  # This method should accept an id as an argument
-  # and return the contact who has that id
-  def self.find
-
-  end
-
-  # This method should allow you to specify 
-  # 1. which of the contact's attributes you want to update
-  # 2. the new value for that attribute
-  # and then make the appropriate change to the contact
-  def update
-
+  def self.find(id)
+    @@contacts.find do |contact|
+      contact.id == id
+    end
   end
 
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
-
+  def self.find_by(name_of_attribute, value_of_attribute)
+    if name_of_attribute == 'first_name'
+      @@contacts.find do |contact|
+        contact.first_name == value_of_attribute
+      end
+    elsif name_of_attribute == 'last_name'
+      @@contacts.find do |contact|
+        contact.last_name == value_of_attribute
+      end
+    elsif name_of_attribute == 'email'
+      @@contacts.find do |contact|
+        contact.email == value_of_attribute
+      end
+    elsif name_of_attribute == 'note'
+      @@contacts.find do |contact|
+        contact.note == value_of_attribute
+      end
+    end
   end
 
   # This method should delete all of the contacts
@@ -43,8 +60,58 @@ class Contact
 
   end
 
-  def full_name
+  # This method should allow you to specify
+  # 1. which of the contact's attributes you want to update
+  # 2. the new value for that attribute
+  # and then make the appropriate change to the contact
+  def update
 
+  end
+
+  # READER METHODS
+
+  def first_name
+    @first_name
+  end
+
+  def last_name
+    @last_name
+  end
+
+  def email
+    @email
+  end
+
+  def note
+    @note
+  end
+
+  def id
+    @id
+  end
+
+  # WRITER METHODS
+
+  def first_name=(first_name)
+    @first_name = first_name
+  end
+
+  def last_name=(last_name)
+    @last_name = last_name
+  end
+
+  def email=(email)
+    @email = email
+  end
+
+  def note=(note)
+    @note = note
+  end
+
+  # METHODS
+
+  def full_name
+    "#{ @first_name }, #{ @last_name }"
   end
 
   # This method should delete the contact
@@ -53,6 +120,15 @@ class Contact
 
   end
 
-  # Feel free to add other methods here, if you need them.
-  
 end
+
+bob = Contact.create('bob', 'dole', 'bob@gmail.com', 'yyyep')
+sue = Contact.create('sue', 'dole', 'sue@gmail.com', 'nnope')
+meg = Contact.create('meg', 'dole', 'meg@gmail.com', 'mmmmk')
+
+puts Contact.all.inspect
+
+puts Contact.find_by('first_name', 'sue').inspect
+puts Contact.find_by('last_name', 'dole').inspect
+puts Contact.find_by('note', 'mmmmk').inspect
+puts Contact.find(3).first_name

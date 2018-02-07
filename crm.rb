@@ -2,8 +2,8 @@ require './contact.rb'
 
 class CRM
 
-  def initialize
-
+  def initialize(name)
+    puts "Okay, this CRM has the name " + name
   end
 
   def main_menu
@@ -11,6 +11,8 @@ class CRM
       print_main_menu
       user_selected = gets.to_i
       call_option(user_selected)
+      sleep(2)
+      # puts "\e[H\e[2J"
     end
   end
 
@@ -55,19 +57,19 @@ class CRM
     print 'Enter ID of the contact: '
     id = gets.to_i
 
-    puts 'Enter attribute to be modified: '
+    puts 'Enter attribute to be modified:'
     print_attribute_menu
     attribute_number = gets.to_i
 
     attribute_name = call_attribute_option(attribute_number)
 
-    puts 'Enter value of the new attribute: '
-    value = gets.chomp
+    puts 'Enter value of the new attribute:'
+    attribute_value = gets.chomp
 
-    Contact.find(id).update(attribute_name, value)
+    Contact.find(id).update(attribute_name, attribute_value)
     updated_contact = Contact.find(id)
 
-    puts "The contact has been updated to:"
+    puts 'The contact has been updated to:'
     puts "#{updated_contact.full_name}, #{updated_contact.email}, #{updated_contact.note}."
     main_menu
   end
@@ -100,16 +102,32 @@ class CRM
 
   def display_all_contacts
     Contact.all.each do |contact|
-      puts "#{contact.full_name}, #{contact.email}, #{contact.note}."
+      puts "ID: #{contact.id}, #{contact.full_name}, #{contact.email}, #{contact.note}."
     end
   end
 
   def search_by_attribute
+    puts 'Enter the attribute to search by: '
+    print_attribute_menu
+    attribute_number = gets.to_i
 
+    attribute_name = call_attribute_option(attribute_number)
+
+    print 'Enter the value of the attribute: '
+    attribute_value = gets.chomp
+
+    found_contact = Contact.find_by(attribute_name, attribute_value)
+    puts "#{found_contact.full_name}, #{found_contact.email}, #{found_contact.note}."
+    main_menu
   end
-
 
 end
 
-crm = CRM.new
+crm = CRM.new('R2D2')
+
+Contact.create('Dmitry', 'Serbin', 'dmitry.sbn@gmail.com', 'cool guy')
+Contact.create('Alex', 'Banuet', 'alex@gmail.com', 'cooler guy')
+Contact.create('Debbie', 'Rosenfeld', 'debbie@gmail.com', 'cooler girl')
+Contact.create('Bill', 'Li', 'bill@gmail.com', 'cooler guy')
+
 crm.main_menu

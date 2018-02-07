@@ -133,23 +133,23 @@ class Contact
 
 end
 
-bob = Contact.create('bob', 'dole', 'bob@gmail.com', 'yyyep')
-sue = Contact.create('sue', 'dole', 'sue@gmail.com', 'nnope')
-meg = Contact.create('meg', 'dole', 'meg@gmail.com', 'mmmmk')
+# bob = Contact.create('bob', 'dole', 'bob@gmail.com', 'yyyep')
+# sue = Contact.create('sue', 'dole', 'sue@gmail.com', 'nnope')
+# meg = Contact.create('meg', 'dole', 'meg@gmail.com', 'mmmmk')
 
 # puts Contact.all.inspect
 
 # puts Contact.find_by('first_name', 'sue').inspect
 # puts Contact.find_by('last_name', 'dole').inspect
 # puts Contact.find_by('note', 'mmmmk').inspect
-puts Contact.find_by('last_name', 'dole').first_name
-
-meg.update('first_name', 'dre')
-# puts meg.inspect
-meg.update('last_name', 'mc. daddy')
-meg.update('email', 'lol')
-meg.update('note', 'aummm')
-# puts meg.inspect
-puts Contact.all.inspect
-bob.delete
-puts Contact.all.inspect
+# puts Contact.find_by('last_name', 'dole').first_name
+#
+# meg.update('first_name', 'dre')
+# # puts meg.inspect
+# meg.update('last_name', 'mc. daddy')
+# meg.update('email', 'lol')
+# meg.update('note', 'aummm')
+# # puts meg.inspect
+# puts Contact.all.inspect
+# bob.delete
+# puts Contact.all.inspect

@@ -142,7 +142,7 @@ meg = Contact.create('meg', 'dole', 'meg@gmail.com', 'mmmmk')
 # puts Contact.find_by('first_name', 'sue').inspect
 # puts Contact.find_by('last_name', 'dole').inspect
 # puts Contact.find_by('note', 'mmmmk').inspect
-# puts Contact.find(3).first_name
+puts Contact.find_by('last_name', 'dole').first_name
 
 meg.update('first_name', 'dre')
 # puts meg.inspect

@@ -21,7 +21,7 @@ class CRM
     puts '[4] Display all contacts'
     puts '[5] Search by attribute'
     puts '[6] Exit'
-    puts 'Enter a number: '
+    print 'Enter a number: '
   end
 
   def call_option(user_selected)
@@ -55,16 +55,20 @@ class CRM
     print 'Enter ID of the contact: '
     id = gets.to_i
 
-    print 'Enter attribute to be modified: '
+    puts 'Enter attribute to be modified: '
     print_attribute_menu
     attribute_number = gets.to_i
 
     attribute_name = call_attribute_option(attribute_number)
 
-    print 'Enter value of the new attribute: '
+    puts 'Enter value of the new attribute: '
     value = gets.chomp
 
     Contact.find(id).update(attribute_name, value)
+    updated_contact = Contact.find(id)
+
+    puts "The contact has been updated to:"
+    puts "#{updated_contact.full_name}, #{updated_contact.email}, #{updated_contact.note}."
     main_menu
   end
 
@@ -85,11 +89,19 @@ class CRM
   end
 
   def delete_contact
+    print 'Enter ID of the contact: '
+    id = gets.to_i
 
+    deleted_contact = Contact.find(id)
+    puts "#{deleted_contact.full_name}, #{deleted_contact.email}, #{deleted_contact.note}"
+    puts "The contact has been deleted."
+    Contact.find(id).delete
   end
 
   def display_all_contacts
-    puts Contact.all
+    Contact.all.each do |contact|
+      puts "#{contact.full_name}, #{contact.email}, #{contact.note}."
+    end
   end
 
   def search_by_attribute

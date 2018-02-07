@@ -103,7 +103,7 @@ class Contact
   # METHODS
 
   def full_name
-    "#{ @first_name }, #{ @last_name }"
+    "#{ @first_name } #{ @last_name }"
   end
 
   # This method should allow you to specify

@@ -48,7 +48,7 @@ class Contact
       @@contacts.find do |contact|
         contact.email == value_of_attribute
       end
-    elsif name_of_attribute == 'note'
+    else
       @@contacts.find do |contact|
         contact.note == value_of_attribute
       end
@@ -57,15 +57,7 @@ class Contact
 
   # This method should delete all of the contacts
   def self.delete_all
-
-  end
-
-  # This method should allow you to specify
-  # 1. which of the contact's attributes you want to update
-  # 2. the new value for that attribute
-  # and then make the appropriate change to the contact
-  def update
-
+    @@contacts = []
   end
 
   # READER METHODS
@@ -114,10 +106,29 @@ class Contact
     "#{ @first_name }, #{ @last_name }"
   end
 
+  # This method should allow you to specify
+  # 1. which of the contact's attributes you want to update
+  # 2. the new value for that attribute
+  # and then make the appropriate change to the contact
+  def update(name_of_attribute, value)
+    if name_of_attribute == 'first_name'
+      @first_name = value
+
+    elsif name_of_attribute == 'last_name'
+      @last_name = value
+
+    elsif name_of_attribute == 'email'
+      @email = value
+
+    else
+      @note = value
+    end
+  end
+
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-
+    @@contacts.delete(self)
   end
 
 end
@@ -126,9 +137,19 @@ bob = Contact.create('bob', 'dole', 'bob@gmail.com', 'yyyep')
 sue = Contact.create('sue', 'dole', 'sue@gmail.com', 'nnope')
 meg = Contact.create('meg', 'dole', 'meg@gmail.com', 'mmmmk')
 
-puts Contact.all.inspect
+# puts Contact.all.inspect
 
-puts Contact.find_by('first_name', 'sue').inspect
-puts Contact.find_by('last_name', 'dole').inspect
-puts Contact.find_by('note', 'mmmmk').inspect
-puts Contact.find(3).first_name
+# puts Contact.find_by('first_name', 'sue').inspect
+# puts Contact.find_by('last_name', 'dole').inspect
+# puts Contact.find_by('note', 'mmmmk').inspect
+# puts Contact.find(3).first_name
+
+meg.update('first_name', 'dre')
+# puts meg.inspect
+meg.update('last_name', 'mc. daddy')
+meg.update('email', 'lol')
+meg.update('note', 'aummm')
+# puts meg.inspect
+puts Contact.all.inspect
+bob.delete
+puts Contact.all.inspect

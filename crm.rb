@@ -123,6 +123,8 @@ class CRM
 
 end
 
+puts "\e[H\e[2J"
+
 crm = CRM.new('R2D2')
 
 Contact.create('Dmitry', 'Serbin', 'dmitry.sbn@gmail.com', 'cool guy')

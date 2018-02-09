@@ -38,7 +38,7 @@ class Contact
   def self.find_by(name_of_attribute, value_of_attribute)
     if name_of_attribute == 'first_name'
       @@contacts.find do |contact|
-        contact.name_of_attribute == value_of_attribute
+        contact.first_name == value_of_attribute
       end
     elsif name_of_attribute == 'last_name'
       @@contacts.find do |contact|

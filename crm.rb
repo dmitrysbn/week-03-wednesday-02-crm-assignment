@@ -71,7 +71,7 @@ class CRM
 
     puts 'The contact has been updated to:'
     puts "#{updated_contact.full_name}, #{updated_contact.email}, #{updated_contact.note}."
-    main_menu
+    # main_menu
   end
 
   def print_attribute_menu
@@ -118,7 +118,7 @@ class CRM
 
     found_contact = Contact.find_by(attribute_name, attribute_value)
     puts "#{found_contact.full_name}, #{found_contact.email}, #{found_contact.note}."
-    main_menu
+    # main_menu
   end
 
 end

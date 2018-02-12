@@ -71,7 +71,7 @@ class CRM
     puts 'Enter value of the new attribute:'
     attribute_value = gets.chomp
 
-    Contact.find(id).update(attribute_name, attribute_value)
+    Contact.find(id).update(attribute_name => attribute_value)
     updated_contact = Contact.find(id)
 
     puts 'The contact has been updated to:'

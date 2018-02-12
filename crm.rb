@@ -50,7 +50,12 @@ class CRM
     print 'Enter a Note: '
     note = gets.chomp
 
-    Contact.create(first_name, last_name, email, note)
+    Contact.create(
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      note: note
+    )
   end
 
   def modify_existing_contact
@@ -116,7 +121,7 @@ class CRM
     print 'Enter the value of the attribute: '
     attribute_value = gets.chomp
 
-    found_contact = Contact.find_by(attribute_name, attribute_value)
+    found_contact = Contact.find_by(attribute_name => attribute_value)
     puts "#{found_contact.full_name}, #{found_contact.email}, #{found_contact.note}."
     # main_menu
   end
@@ -127,10 +132,10 @@ puts "\e[H\e[2J"
 
 crm = CRM.new('R2D2')
 
-Contact.create('Dmitry', 'Serbin', 'dmitry.sbn@gmail.com', 'cool guy')
-Contact.create('Alex', 'Banuet', 'alex@gmail.com', 'cooler guy')
-Contact.create('Debbie', 'Rosenfeld', 'debbie@gmail.com', 'cooler girl')
-Contact.create('Bill', 'Li', 'bill@gmail.com', 'cooler guy')
+# Contact.create('Dmitry', 'Serbin', 'dmitry.sbn@gmail.com', 'cool guy')
+# Contact.create('Alex', 'Banuet', 'alex@gmail.com', 'cooler guy')
+# Contact.create('Debbie', 'Rosenfeld', 'debbie@gmail.com', 'cooler girl')
+# Contact.create('Bill', 'Li', 'bill@gmail.com', 'cooler guy')
 
 crm.main_menu
 

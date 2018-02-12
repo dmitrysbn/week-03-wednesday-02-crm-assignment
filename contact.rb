@@ -4,7 +4,7 @@ require 'mini_record'
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'crm.sqlite3')
 
-class Contact
+class Contact < ActiveRecord::Base
 
   @@contacts = []
   @@id = 1
@@ -64,46 +64,6 @@ class Contact
   # This method should delete all of the contacts
   def self.delete_all
     @@contacts = []
-  end
-
-  # READER METHODS
-
-  def first_name
-    @first_name
-  end
-
-  def last_name
-    @last_name
-  end
-
-  def email
-    @email
-  end
-
-  def note
-    @note
-  end
-
-  def id
-    @id
-  end
-
-  # WRITER METHODS
-
-  def first_name=(first_name)
-    @first_name = first_name
-  end
-
-  def last_name=(last_name)
-    @last_name = last_name
-  end
-
-  def email=(email)
-    @email = email
-  end
-
-  def note=(note)
-    @note = note
   end
 
   # METHODS

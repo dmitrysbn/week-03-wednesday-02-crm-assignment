@@ -133,3 +133,7 @@ Contact.create('Debbie', 'Rosenfeld', 'debbie@gmail.com', 'cooler girl')
 Contact.create('Bill', 'Li', 'bill@gmail.com', 'cooler guy')
 
 crm.main_menu
+
+at_exit do
+  ActiveRecord::Base.connection.close
+end
